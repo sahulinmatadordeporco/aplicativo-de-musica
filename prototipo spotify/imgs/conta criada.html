@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Música - Mais Ouvidos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        .sidebar {
+            width: 25%;
+            background-color: #141414;
+            padding: 20px;
+            border-right: 1px solid #333;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-img {
+            width: 60px;
+        }
+
+        h2 {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .album-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .album-item{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+        .album-item img {
+            width: 45%;
+            border-radius: 10px;
+        }
+
+        .main-content {
+            width: 75%;
+            padding: 20px;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            width: 70%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            background-color: #333;
+            color: white;
+            font-size: 16px;
+        }
+
+        .account a {
+            color: red;
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .artist-list {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .artist-item {
+            text-align: center;
+        }
+
+        .artist-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .artist-item p {
+            font-size: 14px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Logo" class="logo-img">
+            </div>
+            <h2>ÁLBUNS MAIS OUVIDOS</h2>
+            <div class="album-list">
+                <div class="album-item">
+                    <img src="album1.jpg" alt="Álbum 1">
+                </div>
+                <div class="album-item">
+                    <img src="album2.jpg" alt="Álbum 2">
+                </div>
+                <div class="album-item">
+                    <img src="album3.jpg" alt="Álbum 3">
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="top-bar">
+                <input type="text" class="search-box" placeholder="O QUE VOCÊ QUER OUVIR?">
+                <div class="account">
+                    <a href="#">CONTA</a>
+                </div>
+            </div>
+            <h2>ARTISTAS MAIS ESCUTADOS</h2>
+            <div class="artist-list">
+                <div class="artist-item">
+                    <img src="mcig.jpg" alt="MC IG">
+                    <p>MC IG</p>
+                </div>
+                <div class="artist-item">
+                    <img src="mctuto.jpg" alt="MC Tuto">
+                    <p>MC TUTO</p>
+                </div>
+                <div class="artist-item">
+                    <img src="mcluuky.jpg" alt="MC Luuky">
+                    <p>MC LUUKY</p>
+                </div>
+                <div class="artist-item">
+                    <img src="mcgp.jpg" alt="MC GP">
+                    <p>MC GP</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
