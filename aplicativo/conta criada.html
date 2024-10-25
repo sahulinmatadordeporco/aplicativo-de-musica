@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Música - Mais Ouvidos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar {
+            width: 25%;
+            background-color: #141414;
+            padding: 25px;
+            border-right: 1px solid #333;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-img {
+            width: 50px;
+        }
+
+        h2 {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .album-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .album-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .album-item img {
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .main-content {
+            width: 75%;
+            padding: 20px;
+            position: relative;
+        }
+
+        .artist-list {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .artist-item {
+            text-align: center;
+        }
+
+        .artist-item img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .artist-item p {
+            font-size: 14px;
+            color: red;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            width: 70%;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background-color: #333;
+            color: white;
+        }
+
+        .button {
+            padding: 8px 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        form {
+            max-width: 300px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            position: relative; 
+            align-items: right;
+        }
+
+        input {
+            margin: 5px 0;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .audio-player {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            bottom: 20px;
+            left: 25%;
+            right: 20px;
+            background-color: #1c1c1c;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .audio-player button {
+            background-color: transparent;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            flex-grow: 2;
+            margin: 0 15px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 5px;
+            background-color: #333;
+            cursor: pointer;
+            border-radius: 2px;
+            margin: 0 10px;
+        }
+
+        .progress {
+            height: 100%;
+            background-color: red;
+            border-radius: 2px;
+        }
+
+        .volume-container {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .volume-container input {
+            width: 80px;
+        }
+
+        audio {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="logo.png" alt="Logo" class="logo-img">
+            </div>
+            <h2>ÁLBUNS MAIS OUVIDOS</h2>
+            <div class="album-list">
+                <div class="album-item">
+                    <img src="album1.jpg" alt="Álbum 1">
+                </div>
+                <div class="album-item">
+                    <img src="album2.jpg" alt="Álbum 2">
+                </div>
+                <div class="album-item">
+                    <img src="album3.jpg" alt="Álbum 3">
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="top-bar">
+                <input type="text" class="search-box" placeholder="O QUE VOCÊ QUER OUVIR?">
+            </div>
+            <h2>Cadastrar Música</h2>
+            <form id="musicForm">
+                <input type="text" id="title" placeholder="Título" required>
+                <input type="text" id="artist" placeholder="Artista" required>
+                <input type="text" id="genre" placeholder="Gênero" required>
+                <input type="text" id="duration" placeholder="Duração (min)" required>
+                <input type="url" id="link" placeholder="Link da Música" required>
+                <button type="submit" class="button">Cadastrar</button>
+            </form>
+
+            <h2>Músicas Cadastradas</h2>
+            <ul id="musicList"></ul>
+
+            <h2>ARTISTAS MAIS ESCUTADOS</h2>
+            <div class="artist-list">
+                <div class="artist-item">
+                    <img src="mcig.jpg" alt="MC IG">
+                    <p>MC IG</p>
+                </div>
+                <div class="artist-item">
+                    <img src="mctuto.jpg" alt="MC Tuto">
+                    <p>MC TUTO</p>
+                </div>
+                <div class="artist-item">
+                    <img src="mcluuky.jpg" alt="MC Luuky">
+                    <p>MC LUUKY</p>
+                </div>
+                <div class="artist-item">
+                    <img src="mcgp.jpg" alt="MC GP">
+                    <p>MC GP</p>
+                </div>
+            </div>
+
+            <div class="audio-player" id="audioPlayerContainer" style="display: none;">
+                <button id="prevBtn">&#9664;&#9664;</button>
+                <div class="progress-container">
+                    <span id="currentTime">0:00</span>
+                    <div class="progress-bar" id="progressBar">
+                        <div class="progress" id="progress"></div>
+                    </div>
+                    <span id="durationTime">0:00</span>
+                </div>
+                <button id="playBtn">&#9654;</button>
+                <button id="nextBtn">►►</button>
+                <div class="volume-container">
+                    <button id="volumeBtn">🔊</button>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1">
+                </div>
+                <audio id="audioPlayer"></audio>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isPlaying = false;
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playBtn = document.getElementById('playBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progress = document.getElementById('progress');
+        const currentTimeElement = document.getElementById('currentTime');
+        const durationTimeElement = document.getElementById('durationTime');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volumeBtn = document.getElementById('volumeBtn');
+
+        document.getElementById('musicForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const title = document.getElementById('title').value;
+            const artist = document.getElementById('artist').value;
+            const genre = document.getElementById('genre').value;
+            const duration = document.getElementById('duration').value;
+            const link = document.getElementById('link').value;
+            addMusic(title, artist, genre, duration, link);
+            this.reset();
+        });
+
+        function addMusic(title, artist, genre, duration, link) {
+            const music = { title, artist, genre, duration, link };
+            let musicList = JSON.parse(localStorage.getItem('musicList')) || [];
+            musicList.push(music);
+            localStorage.setItem('musicList', JSON.stringify(musicList));
+            displayMusic();
+        }
+
+        function displayMusic() {
+            const musicList = JSON.parse(localStorage.getItem('musicList')) || [];
+            const musicListElement = document.getElementById('musicList');
+            musicListElement.innerHTML = '';
+
+            musicList.forEach((music, index) => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <strong>Título:</strong> ${music.title} <br>
+                    <strong>Artista:</strong> ${music.artist} <br>
+                    <strong>Gênero:</strong> ${music.genre} <br>
+                    <strong>Duração:</strong> ${music.duration} min <br>
+                    <strong>Link:</strong> <a href="#" onclick="playMusic('${music.title}', '${music.artist}', '${music.link}')">Ouvir</a>
+                    <button onclick="removeMusic(${index})" style="background: none; color: red; border: none; cursor: pointer;">Excluir</button>
+                `;
+                musicListElement.appendChild(li);
+            });
+        }
+
+        function removeMusic(index) {
+            let musicList = JSON.parse(localStorage.getItem('musicList')) || [];
+            musicList.splice(index, 1);
+            localStorage.setItem('musicList', JSON.stringify(musicList));
+            displayMusic();
+        }
+
+        function playMusic(title, artist, link) {
+            const audioPlayerContainer = document.getElementById('audioPlayerContainer');
+            audioPlayer.src = link;
+            audioPlayerContainer.style.display = 'flex';
+            audioPlayer.play();
+            isPlaying = true;
+            playBtn.textContent = '❚❚';
+        }
+
+        function togglePlayPause() {
+            if (isPlaying) {
+                audioPlayer.pause();
+                playBtn.textContent = '►';
+            } else {
+                audioPlayer.play();
+                playBtn.textContent = '❚❚';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        audioPlayer.addEventListener('timeupdate', updateProgress);
+        progressBar.addEventListener('click', setProgress);
+        volumeSlider.addEventListener('input', setVolume);
+
+        function updateProgress() {
+            const { duration, currentTime } = audioPlayer;
+            const progressPercent = (currentTime / duration) * 100;
+            progress.style.width = `${progressPercent}%`;
+
+            const minutes = Math.floor(currentTime / 60);
+            const seconds = Math.floor(currentTime % 60);
+            currentTimeElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+
+            if (duration) {
+                const durationMinutes = Math.floor(duration / 60);
+                const durationSeconds = Math.floor(duration % 60);
+                durationTimeElement.textContent = `${durationMinutes}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
+            }
+        }
+
+        function setProgress(e) {
+            const width = progressBar.clientWidth;
+            const clickX = e.offsetX;
+            const duration = audioPlayer.duration;
+            audioPlayer.currentTime = (clickX / width) * duration;
+        }
+
+        function setVolume(e) {
+            audioPlayer.volume = e.target.value;
+        }
+
+        playBtn.addEventListener('click', togglePlayPause);
+
+        volumeBtn.addEventListener('click', function () {
+            if (audioPlayer.volume > 0) {
+                audioPlayer.volume = 0;
+                volumeSlider.value = 0;
+                volumeBtn.textContent = '🔇';
+            } else {
+                audioPlayer.volume = 1;
+                volumeSlider.value = 1;
+                volumeBtn.textContent = '🔊';
+            }
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', function() {
+            // Lógica para reproduzir a próxima música
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', function() {
+            // Lógica para reproduzir a música anterior
+        });
+
+        window.onload = displayMusic;
+    </script>
+</body>
+</html>

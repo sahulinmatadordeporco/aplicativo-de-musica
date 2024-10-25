@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #cf1c1c;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 350px;
+    text-align: center;
+}
+
+.form-box h2 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: white;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    border: none;
+    background-color: #444;
+    color: white;
+    outline: none;
+}
+
+button {
+    background-color: #af1510;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+button:hover {
+    background-color: #ce2121;
+}
+
+.register-link {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+.logo img {
+    width: 40px;
+    margin-bottom: 20px;
+}
+
+    </style>
+</head>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <div class="logo">
+                <img src="logo.png" alt="Logo">
+            </div>
+            <h2>LOGIN</h2>
+            <form action="conta criada.html">
+                <label for="login">EMAIL OU USUÁRIO</label>
+                <input type="text" id="login" placeholder="Login...">
+
+                <label for="password">SENHA</label>
+                <input type="password" id="password" placeholder="Senha...">
+
+                <button type="submit">LOGIN</button>
+                <a href="registro.html" class="register-link">REGISTRE-SE</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
