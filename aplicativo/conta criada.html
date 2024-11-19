@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -96,6 +97,7 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
+            position: relative;
         }
 
         .search-box {
@@ -116,12 +118,28 @@
             cursor: pointer;
         }
 
+        .redirect-button {
+            padding: 8px 15px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .redirect-button:hover {
+            background-color: darkred;
+        }
+
         form {
             max-width: 300px;
             margin: 20px auto;
             display: flex;
             flex-direction: column;
-            position: relative; 
+            position: relative;
             align-items: right;
         }
 
@@ -197,6 +215,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="sidebar">
@@ -219,6 +238,7 @@
         <div class="main-content">
             <div class="top-bar">
                 <input type="text" class="search-box" placeholder="O QUE VOCÊ QUER OUVIR?">
+                <button class="redirect-button" onclick="window.location.href='perfil.html'">Perfil</button>
             </div>
             <h2>Cadastrar Música</h2>
             <form id="musicForm">
@@ -272,7 +292,6 @@
             </div>
         </div>
     </div>
-
     <script>
         let isPlaying = false;
         const audioPlayer = document.getElementById('audioPlayer');
@@ -394,15 +413,16 @@
             }
         });
 
-        document.getElementById('nextBtn').addEventListener('click', function() {
-            // Lógica para reproduzir a próxima música
+        document.getElementById('nextBtn').addEventListener('click', function () {
+
         });
 
-        document.getElementById('prevBtn').addEventListener('click', function() {
-            // Lógica para reproduzir a música anterior
+        document.getElementById('prevBtn').addEventListener('click', function () {
+
         });
 
         window.onload = displayMusic;
     </script>
 </body>
+
 </html>

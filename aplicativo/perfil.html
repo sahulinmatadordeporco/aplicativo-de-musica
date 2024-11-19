@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plano Premium</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #141414;
+            border-radius: 10px;
+            padding: 30px;
+            width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .logo {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+        }
+
+        .logo img {
+            width: 80px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .card {
+            background-color: #1c1c1c;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .card-header {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: red;
+        }
+
+        .card-content {
+            font-size: 14px;
+            color: #ccc;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #141414;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background-color: #2e2e2e;
+        }
+
+        .menu-item span {
+            margin-left: 10px;
+            color: white;
+        }
+
+        .info {
+            margin-top: 20px;
+        }
+
+        .info label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            color: #ccc;
+        }
+
+        .info input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #2e2e2e;
+            color: white;
+        }
+
+        .info input:focus {
+            outline: none;
+            background-color: #3d3d3d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="logo" onclick="window.history.back()">
+            <img src="logo.png" alt="Logo">
+        </div>
+
+        <div class="card">
+            <div class="card-header">Premium</div>
+            <div class="card-content">Você é membro de um plano Premium.</div>
+        </div>
+        <div class="card menu">
+            <div class="menu-item">
+                <span>Editar perfil</span>
+            </div>
+            <div class="menu-item">
+                <span>Recuperar playlists</span>
+            </div>
+        </div>
+        <div class="card info">
+            <label for="username">Nome de usuário: Tetinha</label>
+            <label for="email">E-mail: paulo_barilka@email.com</label>
+            <label for="password">Senha: ********</label>
+        </div>
+    </div>
+</body>
+
+</html>
