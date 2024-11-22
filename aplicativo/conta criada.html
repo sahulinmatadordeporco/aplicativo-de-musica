@@ -310,118 +310,32 @@
             const genre = document.getElementById('genre').value;
             const duration = document.getElementById('duration').value;
             const link = document.getElementById('link').value;
-            addMusic(title, artist, genre, duration, link);
-            this.reset();
+
+            addMusicToList(title, artist, genre, duration, link);
         });
 
-        function addMusic(title, artist, genre, duration, link) {
-            const music = { title, artist, genre, duration, link };
-            let musicList = JSON.parse(localStorage.getItem('musicList')) || [];
-            musicList.push(music);
-            localStorage.setItem('musicList', JSON.stringify(musicList));
-            displayMusic();
-        }
-
-        function displayMusic() {
-            const musicList = JSON.parse(localStorage.getItem('musicList')) || [];
-            const musicListElement = document.getElementById('musicList');
-            musicListElement.innerHTML = '';
-
-            musicList.forEach((music, index) => {
-                const li = document.createElement('li');
-                li.innerHTML = `
-                    <strong>Título:</strong> ${music.title} <br>
-                    <strong>Artista:</strong> ${music.artist} <br>
-                    <strong>Gênero:</strong> ${music.genre} <br>
-                    <strong>Duração:</strong> ${music.duration} min <br>
-                    <strong>Link:</strong> <a href="#" onclick="playMusic('${music.title}', '${music.artist}', '${music.link}')">Ouvir</a>
-                    <button onclick="removeMusic(${index})" style="background: none; color: red; border: none; cursor: pointer;">Excluir</button>
-                `;
-                musicListElement.appendChild(li);
-            });
-        }
-
-        function removeMusic(index) {
-            let musicList = JSON.parse(localStorage.getItem('musicList')) || [];
-            musicList.splice(index, 1);
-            localStorage.setItem('musicList', JSON.stringify(musicList));
-            displayMusic();
+        function addMusicToList(title, artist, genre, duration, link) {
+            const musicList = document.getElementById('musicList');
+            const li = document.createElement('li');
+            li.innerHTML = `${title} - ${artist} <button onclick="playMusic('${title}', '${artist}', '${link}')">Ouvir</button>`;
+            musicList.appendChild(li);
         }
 
         function playMusic(title, artist, link) {
-            const audioPlayerContainer = document.getElementById('audioPlayerContainer');
-            audioPlayer.src = link;
-            audioPlayerContainer.style.display = 'flex';
-            audioPlayer.play();
-            isPlaying = true;
-            playBtn.textContent = '❚❚';
+            // Agora, ao invés de tocar o áudio, abre o link no YouTube
+            window.open(link, '_blank');
         }
 
-        function togglePlayPause() {
+        playBtn.addEventListener('click', () => {
             if (isPlaying) {
                 audioPlayer.pause();
-                playBtn.textContent = '►';
+                playBtn.innerHTML = '&#9654;';
             } else {
                 audioPlayer.play();
-                playBtn.textContent = '❚❚';
+                playBtn.innerHTML = '&#10074;&#10074;';
             }
             isPlaying = !isPlaying;
-        }
-
-        audioPlayer.addEventListener('timeupdate', updateProgress);
-        progressBar.addEventListener('click', setProgress);
-        volumeSlider.addEventListener('input', setVolume);
-
-        function updateProgress() {
-            const { duration, currentTime } = audioPlayer;
-            const progressPercent = (currentTime / duration) * 100;
-            progress.style.width = `${progressPercent}%`;
-
-            const minutes = Math.floor(currentTime / 60);
-            const seconds = Math.floor(currentTime % 60);
-            currentTimeElement.textContent = `${minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
-
-            if (duration) {
-                const durationMinutes = Math.floor(duration / 60);
-                const durationSeconds = Math.floor(duration % 60);
-                durationTimeElement.textContent = `${durationMinutes}:${durationSeconds < 10 ? '0' + durationSeconds : durationSeconds}`;
-            }
-        }
-
-        function setProgress(e) {
-            const width = progressBar.clientWidth;
-            const clickX = e.offsetX;
-            const duration = audioPlayer.duration;
-            audioPlayer.currentTime = (clickX / width) * duration;
-        }
-
-        function setVolume(e) {
-            audioPlayer.volume = e.target.value;
-        }
-
-        playBtn.addEventListener('click', togglePlayPause);
-
-        volumeBtn.addEventListener('click', function () {
-            if (audioPlayer.volume > 0) {
-                audioPlayer.volume = 0;
-                volumeSlider.value = 0;
-                volumeBtn.textContent = '🔇';
-            } else {
-                audioPlayer.volume = 1;
-                volumeSlider.value = 1;
-                volumeBtn.textContent = '🔊';
-            }
         });
-
-        document.getElementById('nextBtn').addEventListener('click', function () {
-
-        });
-
-        document.getElementById('prevBtn').addEventListener('click', function () {
-
-        });
-
-        window.onload = displayMusic;
     </script>
 </body>
 
